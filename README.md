@@ -2,50 +2,33 @@
 
 This repository contains the code for the paper Domain Adaptative Retinal Image Quality Assessment with Knowledge Distillation Using Competitive Teacher-Student Network (ISBI 2023).
 
-![architecture.png](images%2Farchitecture.png)
+![architecture.png](images%2FStructure.png)
 
 ## Datasets
 
-The training set DRIVE is available at [DRIVE](https://drive.grand-challenge.org/).
-The first test set CHASEDB1 is available at [CHASEDB1](https://blogs.kingston.ac.uk/retinal/chasedb1/).
-The second test set AVRDB is available at [AVRDB](http://biomisa.org/index.php/dataset-for-hypertensive-retinopathy/).
+The first dataset EyeQ is available at [EyeQ]([https://drive.grand-challenge.org/](https://github.com/hzfu/EyeQ)).
+The second dataset DRIMDB is available at [DRIMDB](http://isbb.ktu.edu.tr/multimedia/drimdb).
 All of the above datasets should be organized in the following structure:
 
 ```
-<root_name>
-- 0
-    - image.png
-    - label.png
-    - mask.png
-- 1
-- 2
+Kaggle_DR_dataset  # data
+    dataset_name
+    -0  
+       -image.png
+...
+ data              # label
+    label.csv
 ...
 ```
 
-where the `image.png` is the original fundus color image, `label.png` is the ground truth of vessel segmentation, and `mask.png` is the FoV mask, usually a solid circle.
+where the `image.png` is the original fundus color image, `label.csv` is the ground truth of original fundus color image.
 
-The FACT augmentation target dataset EYEPACS is available at [EYEPACS](https://www.kaggle.com/c/diabetic-retinopathy-detection). All fundus images in the target set must be in the same directory, the file name does not need to be specified.
+We select 169 images of EyeQ and DRIMDB datasets respectively and label them into two classes(Good and bad).
 
 ## Dependencies
 
 * torch>=0.4.1
 * torchvision>=0.2.1
-* dominate>=2.3.1
-* visdom>=0.1.8.3
-
-## Training
-
-Before running the training code, you need to start the visdom server by running the following command:
-
-```
-python -m visdom.server -p <some free port> --host 0.0.0.0
-```
-
-The training code is in `train.py`. The training command is as follows:
-
-```
-python ISBI_HGC_Net\procedure_main_method\train.py --model hgcnet --input_nc 3 --output_nc 1 --original_dense --dataset_mode online_fact --dataroot <your training set directory> --target_root <your augmentation target set directory> --preprocess rotate_crop --load_size 565 --crop_size 512 --lr 0.001 --n_epochs 80 --n_epochs_decay 120 --display_port <visdom port> --print_freq 10 --display_freq 40 --save_epoch_freq 30 --repeat_size 10 --name hgcnet --time_suffix --batch_size 2 --gpu_ids <gpu ids> 
-```
 
 ## Acknowledgement
 
@@ -56,9 +39,9 @@ This work was supported in part by Basic and Applied Fundamental Research Founda
 If you find this work useful for your research, please cite our paper:
 
 ```
-@inproceedings{li2023self,
-  title={Self-supervision Boosted Retinal Vessel Segmentation for Cross-domain Data},
-  author={Li, Haojin and Li, Heng and Shu, Hai and Chen, Jianyu and Hu, Yan and Jiang, Liu},
+@inproceedings{lin2023self,
+  title={Domain Adaptative Retinal Image Quality Assessment with Knowledge Distillation Using Competitive Teacher-Student Network},
+  author={Lin, Yuanming and Li, Heng and Liu, Haofeng and Shu, Hai and Li, Zinan and Hu, Yan and Liu, Jiang},
   booktitle={2023 IEEE 20th International Symposium on Biomedical Imaging (ISBI)},
   pages={1--5},
   year={2023},
