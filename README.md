@@ -13,8 +13,7 @@ All of the above datasets should be organized in the following structure:
 ```
 Kaggle_DR_dataset  # data
     dataset_name
-    -0  
-       -image.png
+     -image.png
 ...
  data              # label
     label.csv
