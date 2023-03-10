@@ -2,7 +2,7 @@
 
 This repository contains the code for the paper Domain Adaptative Retinal Image Quality Assessment with Knowledge Distillation Using Competitive Teacher-Student Network (ISBI 2023).
 
-![architecture.png](images%2FStructure.png)
+![Structure.png](images%2FStructure.png)
 
 ## Datasets
 
